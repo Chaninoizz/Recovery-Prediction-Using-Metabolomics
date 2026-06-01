@@ -9,23 +9,23 @@ from sklearn.model_selection import cross_val_score
 # =========================
 
 df = pd.read_csv(
-    "../data/recovery_prediction_dataset_v2.csv"
+    "data/recovery_prediction_dataset_v3.csv"
 )
 # =========================
 # Features Ranked by Importance
 # =========================
 
 ranked_features = [
-    "L-tyrosine_3m",
-    "lipoproteins_preop",
+    "clinical_score",
     "L-allo-Isoleucine_preop",
-    "lipoproteins_3m",
-    "L-alanine_preop",
-    "L-tyrosine_preop",
-    "isopropanol_3m",
-    "methanol_delta",
-    "citrate_delta",
-    "L-valine_preop"
+    "lipoproteins_preop",
+    "creatinine_preop",
+    "glycine_preop",
+    "L-tyrosine_3m",
+    "lipoproteins_delta",
+    "L-glutamine_delta",
+    "L-leucine_preop",
+    "tyrosine_pct"
 ]
 
 # =========================

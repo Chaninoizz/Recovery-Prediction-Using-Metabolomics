@@ -1,9 +1,6 @@
 import pandas as pd
-import os
 
-print(os.getcwd())
-
-from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import StratifiedKFold
 
@@ -23,13 +20,20 @@ selected_features = [
 
 X = df[selected_features]
 
-y = df["Label"]
+y = df["Label"].map({
+    "Fast Recovery": 0,
+    "Poor Recovery": 1
+})
+
+xgb = XGBClassifier(
+    random_state=42,
+    eval_metric="logloss"
+)
 
 param_grid = {
-    "n_estimators": [100, 300, 500, 1000],
-    "max_depth": [2, 3, 4, 5, None],
-    "min_samples_leaf": [1, 2, 3],
-    "min_samples_split": [2, 4, 6]
+    "n_estimators": [50, 100, 200],
+    "max_depth": [2, 3, 4],
+    "learning_rate": [0.01, 0.05, 0.1]
 }
 
 cv = StratifiedKFold(
@@ -39,8 +43,8 @@ cv = StratifiedKFold(
 )
 
 grid = GridSearchCV(
-    RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
+    xgb,
+    param_grid,
     cv=cv,
     scoring="accuracy",
     n_jobs=-1

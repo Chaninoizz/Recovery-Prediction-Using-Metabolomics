@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
 
 df = pd.read_csv(
-    "../data/recovery_prediction_dataset_v2.csv"
+    "data/recovery_prediction_dataset_v2.csv"
 )
 
 features = [

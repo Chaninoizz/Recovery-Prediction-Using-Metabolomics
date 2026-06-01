@@ -1,10 +1,7 @@
 import pandas as pd
-import os
-
-print(os.getcwd())
 
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
 
 df = pd.read_csv(
@@ -22,15 +19,15 @@ selected_features = [
 ]
 
 X = df[selected_features]
-
 y = df["Label"]
 
-param_grid = {
-    "n_estimators": [100, 300, 500, 1000],
-    "max_depth": [2, 3, 4, 5, None],
-    "min_samples_leaf": [1, 2, 3],
-    "min_samples_split": [2, 4, 6]
-}
+model = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=3,
+    min_samples_leaf=1,
+    min_samples_split=2,
+    random_state=42
+)
 
 cv = StratifiedKFold(
     n_splits=5,
@@ -38,18 +35,20 @@ cv = StratifiedKFold(
     random_state=42
 )
 
-grid = GridSearchCV(
-    RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
+scores = cross_val_score(
+    model,
+    X,
+    y,
     cv=cv,
-    scoring="accuracy",
-    n_jobs=-1
+    scoring="accuracy"
 )
 
-grid.fit(X, y)
+print("Fold Scores:")
+print(scores)
 
-print("\nBest Score:")
-print(grid.best_score_)
+print("\nMean Accuracy:")
+print(scores.mean())
 
-print("\nBest Parameters:")
-print(grid.best_params_)
+model.fit(X, y)
+
+print("\nChampion Model Saved In Memory")
