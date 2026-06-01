@@ -1,4 +1,4 @@
-"document" id="41852"}
+="55123"}
 # Recovery Prediction Using Metabolomics
 
 ## Project Overview
@@ -16,6 +16,7 @@ The workflow includes:
 - Feature selection
 - SHAP interpretation
 - Hyperparameter optimization
+- Exhaustive feature search
 
 ---
 
@@ -64,75 +65,228 @@ Models tested:
 - Extra Trees
 - XGBoost
 - SVM
+- Ensemble Learning
+- Stacking Classifier
 
 ### 5. Feature Selection
 
-Top biomarkers:
+Final Selected Biomarkers:
 
-- L-tyrosine_3m
-- lipoproteins_preop
+- clinical_score
 - L-allo-Isoleucine_preop
+- creatinine_preop
+- glycine_preop
+- lipoproteins_ratio
 
 ---
 
 ## Results
 
 | Model | Accuracy |
-|---------|---------|
-| Random Forest | 79.11% |
+|---------|---------:|
+| Random Forest Baseline | 79.11% |
 | Top 3 Features | 81.11% |
 | Ratio Features | 81.11% |
-| XGBoost | 81.11% |
+| XGBoost | 78.89% |
 | Random Forest + Grid Search | 83.33% |
-| Champion Model (Random Forest + Feature Selection) | 85.56% |
+| Champion Model v1 (7 Features) | 85.56% |
+| 🏆 Champion Model v2 (5 Features) | 89.33% |
 
-### Champion Model
+---
 
-Algorithm: Random Forest Classifier
+## Final Champion Model
 
-Best Hyperparameters:
+### Algorithm
+
+Random Forest Classifier
+
+### Cross-Validation Results (5-Fold)
+
+Fold Scores:
+
+text [0.80, 1.00, 0.78, 1.00, 0.89] 
+
+Mean Accuracy:
+
+text 89.33% 
+
+Standard Deviation:
+
+text 9.47% 
+
+### Best Hyperparameters
 
 python RandomForestClassifier(     n_estimators=100,     max_depth=3,     min_samples_leaf=1,     min_samples_split=2,     random_state=42 ) 
 
-Selected Features:
+### Selected Biomarkers
 
-1. L-tyrosine_3m
-2. lipoproteins_preop
-3. L-allo-Isoleucine_preop
-4. creatinine_preop
-5. glycine_preop
-6. lipoproteins_delta
-7. L-glutamine_delta
+1. clinical_score
+2. L-allo-Isoleucine_preop
+3. creatinine_preop
+4. glycine_preop
+5. lipoproteins_ratio
 
-Cross-Validation Results (5-Fold):
+---
 
-text Fold Scores: [0.60, 0.90, 0.89, 1.00, 0.89]  Mean Accuracy: 85.56% 
+## Model Interpretation
 
-### Key Findings
+SHAP analysis identified the following biomarkers as the most influential predictors of recovery outcome:
 
-- L-tyrosine_3m was one of the most predictive biomarkers for recovery outcome.
-- Lipoprotein-related metabolites showed strong predictive value.
-- Feature selection significantly improved model performance.
-- The final Random Forest model achieved the highest accuracy of 85.56% using only 7 selected biomarkers.
+- clinical_score
+- L-allo-Isoleucine_preop
+- creatinine_preop
+- glycine_preop
+- lipoproteins_ratio
 
-### Conclusion
+The use of engineered ratio features improved prediction performance while reducing the number of required biomarkers.
 
-This study demonstrates that metabolomics biomarkers can be used to predict patient recovery outcomes with high accuracy. Using feature selection and Random Forest optimization, the final model achieved 85.56% cross-validated accuracy, indicating strong potential for recovery prediction based on metabolomic pr
+---
+
+## Visualizations
+
+### Confusion Matrix
+
+Confusion Matrix
+
+### SHAP Analysis
+
+SHAP Analysis
+
+---
+
+## Key Findings
+
+- Only five biomarkers were required to achieve the highest predictive performance.
+- Feature engineering significantly improved model accuracy.
+- Lipoprotein-related ratio features were more informative than raw lipoprotein measurements.
+- Exhaustive feature search outperformed conventional feature selection methods.
+- The final model achieved 89.33% cross-validated accuracy.
+- L-allo-Isoleucine_preop consistently appeared as one of the strongest predictive biomarkers.
+- Clinical information combined with metabolomics data substantially improved prediction performance.
+
+---
+
+## Conclusion
+
+This study demonstrates that metabolomics biomarkers can be used to predict patient recovery outcomes with high accuracy.
+
+After extensive experimentation involving:
+
+- Feature Engineering
+- Biomarker Ranking
+- Boruta Feature Selection
+- RFECV
+- Random Forest Optimization
+- XGBoost
+- Ensemble Learning
+- Stacking Classifiers
+- Hyperparameter Optimization
+- Exhaustive Feature Search
+- SHAP Interpretation
+
+the final Random Forest model achieved 89.33% cross-validated accuracy using only five biomarkers.
+
+These results suggest that metabolomics-based recovery prediction has strong potential for future clinical decision support applications.
+
+---
 
 ## Project Structure
 
-text data/ raw_data/ results/ scripts/  README.md requirements.txt .gitignore 
+Recovery-Prediction-Using-Metabolomics/
 
+├── data/
+
+│   ├── recovery_prediction_dataset.csv
+
+│   ├── recovery_prediction_dataset_v2.csv
+
+│   ├── recovery_prediction_dataset_v3.csv
+
+│   └── model_comparison.csv
+
+│
+
+├── raw_data/
+
+│   ├── Domain_2_NMR_results_MTBLS242.tsv
+
+│   └── Domain_2_sample_table_MTBLS242.tsv
+
+│
+
+├── results/
+
+│   ├── confusion_matrix.png
+
+│   ├── confusion_matrix_v2.png
+
+│   ├── champion_shap.png
+
+│   └── champion_shap_v2.png
+
+│
+
+├── scripts/
+
+│   ├── step22_train_model.py
+
+│   ├── step25_feature_search.py
+
+│   ├── step28_grid_search.py
+
+│   ├── step33_champion_model.py
+
+│   ├── step50_super_champion.py
+
+│   ├── step51_confusion_matrix_v2.py
+
+│   └── step52_shap_v2.py
+
+│
+
+├── README.md
+
+├── requirements.txt
+
+└── .gitignore
 ---
 
 ## How to Run
 
-Install packages:
+### Install Dependencies
 
 bash pip install -r requirements.txt 
 
-Run scripts:
+### Run Baseline Model
 
-bash python scripts/step22_train_model.py python scripts/step25_feature_search.py python scripts/step28_grid_search.py 
+bash python scripts/step22_train_model.py 
+
+### Run Feature Search
+
+bash python scripts/step25_feature_search.py 
+
+### Run Hyperparameter Optimization
+
+bash python scripts/step28_grid_search.py 
+
+### Run Final Champion Model
+
+bash python scripts/step50_super_champion.py 
+
+### Generate Confusion Matrix
+
+bash python scripts/step51_confusion_matrix_v2.py 
+
+### Generate SHAP Analysis
+
+bash python scripts/step52_shap_v2.py 
 
 ---
+
+## Author
+
+-
+
+School of Information Technology
+
+King Mongkut's University of Technology Thonbur
