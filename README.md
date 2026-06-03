@@ -1,227 +1,183 @@
-ariant="document" id="78452"}
-# MetaboRecovery AI
-## ระบบปัญญาประดิษฐ์เพื่อช่วยประเมินการฟื้นตัวหลังการผ่าตัดจากข้อมูลเมตาโบโลมิกส์ (Metabolomics-Based Clinical Decision Support System)
+MetaboRecovery AI
 
----
+Metabolomics-Based Clinical Decision Support System for Post-Operative Recovery Prediction
 
-# ที่มาและความสำคัญของโครงการ
+ภาพรวมโครงการ
 
-การประเมินการฟื้นตัวของผู้ป่วยหลังการผ่าตัดเป็นหนึ่งในความท้าทายสำคัญทางการแพทย์ เนื่องจากผู้ป่วยแต่ละรายมีการตอบสนองต่อการรักษาแตกต่างกัน แม้ว่าจะได้รับการรักษาในรูปแบบเดียวกันก็ตาม
+MetaboRecovery AI เป็นระบบ Clinical Decision Support System (CDSS) ที่พัฒนาขึ้นเพื่อวิเคราะห์ข้อมูล Metabolomics จากเลือดผู้ป่วยหลังการผ่าตัด และทำนายแนวโน้มการฟื้นตัวของผู้ป่วยด้วยเทคนิค Machine Learning
 
-ปัจจุบันเทคโนโลยี Metabolomics สามารถวิเคราะห์สารเมตาโบไลต์ภายในร่างกาย ซึ่งสะท้อนถึงสภาวะทางชีวภาพและกระบวนการฟื้นตัวของผู้ป่วยได้อย่างละเอียด ทำให้สามารถนำข้อมูลดังกล่าวมาประยุกต์ใช้ร่วมกับปัญญาประดิษฐ์ (Artificial Intelligence) เพื่อคาดการณ์ผลลัพธ์ทางคลินิกได้อย่างมีประสิทธิภาพ
+ระบบถูกออกแบบภายใต้แนวคิด Explainable AI (XAI) เพื่อให้สามารถอธิบายเหตุผลของการทำนายได้ผ่านการวิเคราะห์ Biomarker ที่มีอิทธิพลต่อผลลัพธ์ของโมเดล
 
-โครงการ MetaboRecovery AI จึงถูกพัฒนาขึ้นเพื่อสร้างระบบ Clinical Decision Support System (CDSS) ที่สามารถช่วยประเมินความเสี่ยงในการฟื้นตัวของผู้ป่วยหลังการผ่าตัด พร้อมอธิบายเหตุผลของการตัดสินใจของโมเดลผ่านการวิเคราะห์ Biomarker ที่สำคัญ
+⸻
 
----
+วัตถุประสงค์
 
-# วัตถุประสงค์
+1. ทำนายผลการฟื้นตัวของผู้ป่วยหลังการผ่าตัด
+2. ค้นหา Biomarker สำคัญที่เกี่ยวข้องกับกระบวนการฟื้นตัว
+3. อธิบายผลการทำนายของ AI อย่างโปร่งใส
+4. สนับสนุนการตัดสินใจทางคลินิกของบุคลากรทางการแพทย์
 
-1. พัฒนาโมเดล Machine Learning สำหรับคาดการณ์ผลการฟื้นตัวหลังการผ่าตัด
+⸻
 
-2. วิเคราะห์ Biomarker ที่มีผลต่อการฟื้นตัวของผู้ป่วย
+ข้อมูลที่ใช้
 
-3. สร้างระบบ Clinical AI Report เพื่อช่วยอธิบายผลการทำนายของโมเดล
+Dataset ที่ใช้พัฒนาระบบมาจากข้อมูล NMR Metabolomics ของผู้ป่วยหลังการผ่าตัด
 
-4. พัฒนาต้นแบบ Clinical Decision Support Platform สำหรับบุคลากรทางการแพทย์
+* จำนวนผู้ป่วย: 47 ราย
+* ประเภทข้อมูล: Blood Metabolomics
+* รูปแบบข้อมูล: Metabolite Profiles
+* Outcome:
+    * Fast Recovery
+    * Poor Recovery
 
----
+⸻
 
-# ข้อมูลที่ใช้ในการศึกษา
+วิธีการพัฒนาโมเดล
 
-## Dataset
+Data Processing
 
-ข้อมูลผู้ป่วยทั้งหมด
+* Data Cleaning
+* Feature Selection
+* Feature Engineering
+* Standardization
 
-47 ราย
+Machine Learning
 
-แบ่งเป็น
+โมเดลหลักที่เลือกใช้คือ
 
-- Poor Recovery จำนวน 24 ราย
-- Fast Recovery จำนวน 23 ราย
+* Random Forest Classifier
 
-ข้อมูลประกอบด้วย
+เนื่องจากให้ผลลัพธ์ที่ดีที่สุดสำหรับข้อมูลชุดนี้
 
-- Clinical Score
-- Glycine
-- Creatinine
-- Amino Acid Metabolites
-- Ketone Body Metabolites
-- Metabolomics Biomarkers อื่น ๆ
+Validation
 
----
+* Stratified 5-Fold Cross Validation
 
-# วิธีดำเนินงาน
+ผลลัพธ์ที่ได้
 
-## 1. Data Preparation
+* Accuracy: 91.56%
 
-- ทำความสะอาดข้อมูล
-- คัดเลือกตัวแปรสำคัญ
-- เตรียมข้อมูลสำหรับ Machine Learning
+⸻
 
-## 2. Feature Selection
+ผลลัพธ์ของระบบ
 
-วิเคราะห์และคัดเลือก Biomarker ที่มีความสัมพันธ์กับผลการฟื้นตัว
+Recovery Outcome Prediction
 
-Biomarker สุดท้ายที่ถูกเลือก ได้แก่
+ระบบสามารถทำนายแนวโน้มการฟื้นตัวของผู้ป่วยได้เป็น 2 กลุ่ม
+
+* Fast Recovery
+* Poor Recovery
+
+พร้อมรายงาน
+
+* Prediction Confidence
+* Clinical Risk Level
+* AI Risk Score
+
+⸻
+
+Biomarker Discovery
+
+ระบบสามารถค้นหา Biomarker ที่มีอิทธิพลต่อการทำนายได้
+
+ตัวอย่าง Biomarker สำคัญที่ค้นพบ
 
 1. clinical_score
 2. glycine_preop
-3. creatinine_preop
+3. L-glutamine_3m
 4. L-allo-Isoleucine_3m
-5. L-glutamine_3m
-6. (R)-3-Hydroxybutyric acid_3m
-7. L-valine_preop
+5. creatinine_preop
+6. L-valine_preop
+7. (R)-3-Hydroxybutyric acid_3m
 
----
+Biomarker เหล่านี้ถูกนำมาใช้ในการสร้าง Clinical Report และการอธิบายผลลัพธ์ของ AI
 
-## 3. Machine Learning Model
+⸻
 
-โมเดลที่ใช้
+Explainable AI
 
-Random Forest Classifier
+ระบบสามารถอธิบายเหตุผลของการทำนายได้ผ่าน
 
-Parameter
+* Feature Importance Analysis
+* Biomarker Deviation Analysis
+* Clinical Interpretation
+* Risk Assessment
 
-- n_estimators = 100
-- max_depth = 3
-- random_state = 42
+ช่วยให้ผู้ใช้งานสามารถเข้าใจได้ว่าปัจจัยใดส่งผลต่อผลการทำนาย
 
-Validation Method
+⸻
 
-- Stratified 5-Fold Cross Validation
+Metabolic Pattern Analysis
 
----
+นอกเหนือจากการทำนายผลการฟื้นตัว ระบบยังสามารถวิเคราะห์รูปแบบทางเมตาบอลิซึม (Metabolic Patterns) ของผู้ป่วยจาก Biomarker ที่ตรวจพบ
 
-# ผลการทดลอง
+ระบบสามารถระบุความคล้ายคลึงกับรูปแบบที่รายงานในงานวิจัยด้านเมตาบอลิซึม เช่น
 
-## Model Performance
+Strong Association
 
-Accuracy
+* Insulin Resistance Pattern
+* Metabolic Syndrome Risk
 
-91.56%
+Moderate Association
 
-Cross Validation Scores
+* Diabetes-like Metabolic Signature
+* Hypertension-associated Metabolic Pattern
 
-- 90.0%
-- 90.0%
-- 88.9%
-- 100.0%
-- 88.9%
+ผลลัพธ์ส่วนนี้มีวัตถุประสงค์เพื่อสนับสนุนการวิเคราะห์เชิงวิจัยและการตัดสินใจทางคลินิกเท่านั้น
 
-Training Accuracy
+ไม่ใช่การวินิจฉัยโรคโดยตรง
 
-97.87%
+⸻
 
----
-
-## Biomarker Importance
-
-Biomarker ที่มีผลต่อการตัดสินใจของโมเดลมากที่สุด
-
-| Biomarker | Importance |
-|------------|------------|
-| clinical_score | 37.4% |
-| glycine_preop | 17.5% |
-| L-glutamine_3m | 11.0% |
-| L-allo-Isoleucine_3m | 10.5% |
-| creatinine_preop | 10.5% |
-| L-valine_preop | 7.9% |
-| (R)-3-Hydroxybutyric acid_3m | 5.2% |
-
----
-
-# ระบบ Clinical AI Report
+Clinical Report
 
 ระบบสามารถสร้างรายงานอัตโนมัติสำหรับผู้ป่วยแต่ละราย ประกอบด้วย
 
-## Patient Information
+* Prediction Result
+* Confidence Score
+* Key Clinical Drivers
+* Metabolic Alerts
+* Biomarker Interpretation
+* Clinical Risk Summary
+* Final Assessment
+* Metabolic Pattern Analysis
 
-- Patient ID
-- วันที่วิเคราะห์
-- Prediction Result
-- Confidence Score
+⸻
 
-## Biomarker Assessment
+Dashboard Prototype
 
-สำหรับ Biomarker ที่ผิดปกติ ระบบจะแสดง
+Prototype ถูกออกแบบในรูปแบบ Clinical AI Dashboard เพื่อแสดงข้อมูลสำคัญ เช่น
 
-- Patient Value
-- Population Mean
-- Z-Score
-- Clinical Significance
-- Clinical Interpretation
-- Associated Conditions
+* Model Performance
+* Cohort Information
+* Biomarker Importance
+* Recovery Distribution
+* PCA Clustering
+* Clinical Reports
+* Explainable AI Analysis
 
-## AI Condition Statement
+⸻
 
-สรุปเหตุผลของการทำนายโดยอ้างอิงจาก Biomarker สำคัญ
+ข้อจำกัดของระบบ
 
-## Clinical Risk Summary
+* Dataset มีขนาดค่อนข้างเล็ก (47 ราย)
+* ผลลัพธ์ยังไม่สามารถใช้เป็นการวินิจฉัยทางการแพทย์ได้
+* จำเป็นต้องมีการทดสอบเพิ่มเติมกับข้อมูลจากหลายศูนย์วิจัย
 
-- Recovery Risk
-- Metabolic Risk
-- Overall Status
-- AI Risk Score
+⸻
 
-## Final Assessment
+แนวทางพัฒนาในอนาคต
 
-สรุปผลทางคลินิกที่เข้าใจง่ายสำหรับบุคลากรทางการแพทย์
+* เพิ่มจำนวนผู้ป่วยใน Dataset
+* รองรับหลายโรงพยาบาล
+* พัฒนา Disease Pattern Modeling
+* เชื่อมต่อกับ Electronic Health Records (EHR)
+* พัฒนา Real-Time Clinical Decision Support System
 
----
+⸻
 
-# Dashboard Prototype
+Disclaimer
 
-ต้นแบบแพลตฟอร์มประกอบด้วย
+ระบบนี้ถูกพัฒนาขึ้นเพื่อการวิจัยและการสนับสนุนการตัดสินใจทางคลินิกเท่านั้น
 
-## Recovery Analytics Dashboard
-
-แสดง
-
-- Model Accuracy
-- Patient Count
-- Recovery Distribution
-- Biomarker Importance
-- PCA Recovery Clusters
-
-## Patient Analysis
-
-สำหรับวิเคราะห์ผู้ป่วยรายบุคคล
-
-## Clinical Report
-
-สำหรับแสดงรายงานการวิเคราะห์แบบละเอียด
-
-## SHAP Explorer
-
-สำหรับอธิบายการตัดสินใจของโมเดล
-
----
-
-# จุดเด่นของโครงการ
-
-- ใช้ข้อมูล Metabolomics จริงในการวิเคราะห์
-- มีความแม่นยำ 91.56%
-- สามารถอธิบายเหตุผลของการทำนายได้
-- แสดงผลในรูปแบบ Clinical Report
-- มี Dashboard สำหรับใช้งานจริง
-- สามารถพัฒนาเป็น Clinical Decision Support Platform ในอนาคต
-
----
-
-# ผลลัพธ์ที่คาดว่าจะได้รับ
-
-1. ระบบต้นแบบสำหรับประเมินการฟื้นตัวหลังการผ่าตัด
-
-2. เครื่องมือช่วยสสนุนการตัดสินใจทางคลินิก
-
-3. แนวทางการประยุกต์ใช้ Metabolomics ร่วมกับ Artificial Intelligence ในงานทางการแพทย์
-
-4. ต้นแบบแพลตฟอร์ม HealthTech ที่สามารถต่อยอดสู่การใช้งานจริงได้
-
-ข้อจำกัด
-
-โครงการอยู่ในระดับต้นแบบ (Prototype)
-
-ข้อมูลผู้ป่วยมีจำนวน 47 ราย ซึ่งยังจำเป็นต้องมีการเก็บข้อมูลเพิ่มเติมเพื่อเพิ่มความสามารถในการใช้งานในระดับคลินิกจริง
-
-ผลลัพธ์ของระบบมีวัตถุประสงค์เพื่อการวิจัยและการสนับสนุนการตัดสินใจเท่านั้น ไม่สามารถใช้แทนการวินิจฉัยโดยแพทย์ได้
+ผลลัพธ์จากระบบไม่สามารถใช้แทนการวินิจฉัยหรือการรักษาโดยแพทย์ได้
