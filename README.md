@@ -262,7 +262,7 @@ Biomarkers เหล่านี้ถูกใช้เป็นตัวแป
 
 * Optimized Random Forest
 * Cross Validation
-* Hyperparameter Optimization
+* Parameter Optimization
 * Explainable AI Analysis
 
 # Champion Model Development
@@ -338,7 +338,7 @@ Biomarkers เหล่านี้ถูกใช้เป็นตัวแป
 
 ---
 
-### Phase 4: Hyperparameter Optimization
+### Phase 4: Parameter Optimization
 
 หลังจากได้ Candidate Models หลายเวอร์ชัน ทีมงานได้ดำเนินการปรับแต่ง Hyperparameters อย่างเป็นระบบ
 
@@ -397,27 +397,28 @@ Biomarkers เหล่านี้ถูกใช้เป็นตัวแป
 
 ---
 
-## Official Champion Model
+# Official Champion Model
 
-หลังจากผ่านกระบวนการคัดเลือกหลายรอบ ทีมงานได้คัดเลือก Official Champion Model ซึ่งเป็นโมเดลที่มีสมดุลดีที่สุดระหว่างความแม่นยำ ความเสถียร และความสามารถในการอธิบายผลลัพธ์
+Official Champion Model เป็นผลลัพธ์จากกระบวนการพัฒนาและคัดเลือก Machine earning Pipelines หลายเวอร์ชัน โดยทีมงานได้เปรียบเทียบโมเดลหลายรูปแบบร่วมกับกระบวนการคัดเลือก Biomarkers และการปรับปรุง Pipeline อย่างต่อเนื่อง
 
 Champion Model ประกอบด้วย
 
-### Optimized Random Forest Engine
+* Multi-Stage Biomarker Selection Pipeline
+* Selected Biomarker Set (7 Key Biomarkers)
+* Random Forest Prediction Engine
+* Explainable AI Framework
+* Clinical Interpretation Layer
+* Automated Clinical Report Generation
 
-ใช้ Random Forest ที่ผ่านการปรับแต่ง Hyperparameters เพื่อให้เหมาะสมกับข้อมูล Metabolomics
+เหตุผลที่ Champion Model ได้รับการคัดเลือก
 
-### Biomarker Selection Layer
+* ให้ Accuracy สูงที่สุดเมื่อเปรียบเทียบกับ Candidate Models อื่น
+* มีความเสถียรในการประเมินด้วย Stratified 5-Fold Cross Validation
+* สามารถลดความซับซ้อนของข้อมูล Metabolomics ผ่านการคัดเลือก Biomarkers อย่างเป็นระบบ
+* รองรับ Explainable AI และ Feature Importance Analysis
+* สามารถแปลงผลลัพธ์ทาง Machine Learning ให้เป็นข้อมูลที่ตีความเชิงคลินิกได้
 
-ใช้เฉพาะ Biomarkers ที่ผ่านกระบวนการคัดเลือกและพิสูจน์แล้วว่ามีความสำคัญต่อ Outcome
-
-### Explainable AI Layer
-
-วิเคราะห์ Feature Importance และ Biomarker Contributions เพื่ออธิบายเหตุผลของการทำนาย
-
-### Clinical Interpretation Layer
-
-แปลงผลลัพธ์ของโมเดลให้เป็นข้อมูลที่บุคลากรทางการแพทย์สามารถเข้าใจได้
+ภายใน Champion Model ใช้ Random Forest เป็น Prediction Engine หลัก เนื่องจากมีความเหมาะสมกับข้อมูล Metabolomics ที่มีจำนวนตัวอย่างจำกัด สามารถจัดการความสัมพันธ์แบบไม่เชิงเส้นของ Biomarkers ได้ดี และรองรับการวิเคราะห์ความสำคัญของ Biomarkers โดยตรง
 
 ---
 
@@ -469,7 +470,7 @@ Training Accuracy
 
 จุดเด่นสำคัญของ Champion Model คือการไม่ได้หยุดอยู่เพียงการทำนายผลการฟื้นตัว
 
-ระบบสามารถนำ Biomarkers ที่ค้นพบมาวิเคราะห์ต่อในระดับ Clinical Intellige
+ระบบสามารถนำ Biomarkers ที่ค้นพบมาวิเคราะห์ต่อในระดับ Clinical Intelligence
 
 ประกอบด้วย
 
@@ -597,4 +598,22 @@ Prototype ถูกพัฒนาในรูปแบบ Clinical AI Dashboard
 - ช่วยสนับสนุนการประเมินความเสี่ยงของผู้ป่วยหลังการผ่าตัด
 - ช่วยค้นหา Biomarkers ที่เกี่ยวข้องกับผลลัพธ์ทางคลินิก
 - เพิ่มความโปร่งใสของ AI ในงานทางการแพทย์
--
+- สนับสนุนการพัฒนา Precision Medicine ในอนาคต
+- เป็นต้นแบบของ Clinical Decision Support Platform สำหรับงาน Metabolomics
+
+# Why Metabolomics?
+
+Metabolomics reflects real-time biochemical activity within the body and provides insights into metabolic pathways associated with recovery processes.
+
+Compared with conventional clinical measurements, metabolomics can reveal subtle physiological changes before clinical symptoms become apparent.
+
+# Clinical Significance
+
+MetaboRecovery AI aims to support clinicians in identifying patients at risk of delayed recovery.
+
+Early identification may enable:
+
+- Enhanced monitoring
+- Personalized recovery planning
+- Improved post-operative care
+- Better resource allocation
