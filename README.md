@@ -74,8 +74,6 @@ Clinical AI Report
 Clinical Dashboard
 
 ---
-
-iant="document" id="92614"}
 # Data Processing Pipeline
 
 เพื่อให้ได้โมเดลที่มีความแม่นยำสูงและสามารถอธิบายผลลัพธ์ทางคลินิกได้อย่างน่าเชื่อถือ ทีมงานได้ออกแบบ Data Processing Pipeline แบบหลายขั้นตอน โดยครอบคลุมตั้งแต่การเตรียมข้อมูลดิบไปจนถึงการคัดเลือก Biomarkers ที่เหมาะสมสำหรับการสร้าง Champion Model
