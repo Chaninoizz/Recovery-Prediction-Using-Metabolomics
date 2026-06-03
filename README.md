@@ -289,4 +289,4 @@ bash python scripts/step52_shap_v2.py
 
 School of Information Technology
 
-King Mongkut's University of Technology Thonbur
+King Mongkut's University of Technology Thonburg
