@@ -1,0 +1,211 @@
+97.87%
+Enter Patient ID: python3 -u "/Users/ming/Desktop/Tack 1/figma_handoff/step56_real_clinical_report.py"
+Traceback (most recent call last):
+  File "/Users/ming/Desktop/Tack 1/figma_handoff/step56_real_clinical_report.py", line 157, in <module>
+    patient_id = int(
+        input("Enter Patient ID: ")
+    )
+ValueError: invalid literal for int() with base 10: 'python3 -u "/Users/ming/Desktop/Tack 1/figma_handoff/step56_real_clinical_report.py"'
+(.venv) ming@MacBook-Pro-khxng-Chadathong Tack 1 % clear
+(.venv) ming@MacBook-Pro-khxng-Chadathong Tack 1 % python3 -u "/Users/ming/Desktop/Tack 1/scripts/s
+tep56_real_clinical_report.py"
+
+Training Accuracy:
+97.87%
+Enter Patient ID: 2
+
+Generating Clinical AI Report...
+Analyzing Metabolomic Biomarkers...
+==================================================
+ADVANCED CLINICAL AI REPORT
+==================================================
+
+Patient ID:
+PT-000002
+
+Analysis Date:
+2026-06-03
+
+Prediction:
+Poor Recovery
+
+Confidence:
+87.12%
+
+Risk Level:
+HIGH
+
+Model Accuracy:
+91.56%
+
+Cross Validation Scores:
+[0.9        0.9        0.88888889 1.         0.88888889]
+
+==================================================
+KEY CLINICAL DRIVERS
+==================================================
+1. clinical_score (37.4%)
+2. glycine_preop (17.5%)
+3. L-glutamine_3m (11.0%)
+4. L-allo-Isoleucine_3m (10.5%)
+5. creatinine_preop (10.5%)
+6. L-valine_preop (7.9%)
+7. (R)-3-Hydroxybutyric acid_3m (5.2%)
+
+==================================================
+METABOLIC ALERTS
+==================================================
+
+Biomarker:
+clinical_score
+Patient Value: -0.882
+Population Mean: 1.313
+Z-Score: -0.93
+Status: BELOW POPULATION MEAN
+Clinical Significance: MILD DEVIATION
+
+Clinical Interpretation:
+Clinical score summarizes overall clinical recovery status.
+
+Associated Conditions:
+• Recovery Risk Assessment
+
+Biomarker:
+glycine_preop
+Patient Value: -0.158
+Population Mean: -0.759
+Z-Score: 0.68
+Status: ABOVE POPULATION MEAN
+Clinical Significance: MILD DEVIATION
+
+Clinical Interpretation:
+Glycine is involved in energy metabolism and recovery-associated pathways.
+
+Associated Conditions:
+• Metabolic Dysregulation
+• Recovery Risk Pattern
+
+Biomarker:
+creatinine_preop
+Patient Value: 0.570
+Population Mean: -0.049
+Z-Score: 0.50
+Status: ABOVE POPULATION MEAN
+Clinical Significance: MINIMAL DEVIATION
+
+Clinical Interpretation:
+Creatinine is commonly used as a marker of metabolic stress and physiological recovery.
+
+Associated Conditions:
+• Metabolic Stress State
+• Recovery Impairment Pattern
+
+Biomarker:
+L-allo-Isoleucine_3m
+Patient Value: -0.951
+Population Mean: -0.218
+Z-Score: -0.74
+Status: BELOW POPULATION MEAN
+Clinical Significance: MILD DEVIATION
+
+Clinical Interpretation:
+Altered branched-chain amino acid metabolism has been associated with impaired recovery.
+
+Associated Conditions:
+• Amino Acid Dysregulation
+• Metabolic Syndrome–Like Pattern
+
+Biomarker:
+L-glutamine_3m
+Patient Value: 1.009
+Population Mean: -0.288
+Z-Score: 0.70
+Status: ABOVE POPULATION MEAN
+Clinical Significance: MILD DEVIATION
+
+Clinical Interpretation:
+Glutamine plays an important role in recovery and tissue repair.
+
+Associated Conditions:
+• Recovery Pathway Alteration
+
+Biomarker:
+(R)-3-Hydroxybutyric acid_3m
+Patient Value: -0.155
+Population Mean: 0.673
+Z-Score: -0.87
+Status: BELOW POPULATION MEAN
+Clinical Significance: MILD DEVIATION
+
+Clinical Interpretation:
+This metabolite reflects changes in energy utilization and ketone metabolism.
+
+Associated Conditions:
+• Energy Utilization Shift
+
+==================================================
+AI CONDITION STATEMENT
+--------------------------------------------------
+
+The strongest contributors to this prediction were:
+
+• clinical_score (37.4%)
+
+• glycine_preop (17.5%)
+
+• L-glutamine_3m (11.0%)
+
+These biomarkers collectively support
+the Poor Recovery classification.
+
+clinical_score was BELOW POPULATION MEAN.
+glycine_preop was ABOVE POPULATION MEAN.
+L-glutamine_3m was ABOVE POPULATION MEAN.
+
+The overall metabolomic profile shows
+strong similarity to individuals within
+the Poor Recovery cohort and suggests
+increased recovery risk.
+
+
+==================================================
+CLINICAL RISK SUMMARY
+==================================================
+
+Recovery Risk:
+HIGH
+
+Metabolic Risk:
+HIGH
+
+Overall Status:
+ABNORMAL
+
+AI Risk Score:
+8.7/10
+
+==================================================
+FINAL ASSESSMENT
+==================================================
+
+The patient exhibits a metabolomic profile
+consistent with the Poor Recovery cohort.
+
+Multiple recovery-associated biomarkers
+contributed to this prediction.
+
+Enhanced monitoring may be beneficial.
+
+
+DISCLAIMER
+--------------------------------------------------
+
+This report is generated using a machine
+learning model trained on metabolomics data.
+
+The prediction is intended for research and
+decision-support purposes only and should not
+be used as a standalone clinical diagnosis.
+
+==================================================
+(.venv) ming@MacBook-Pro-khxng-Chadathong Tack 1 % 

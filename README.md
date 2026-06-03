@@ -1,292 +1,227 @@
-="55123"}
-# Recovery Prediction Using Metabolomics
-
-## Project Overview
-
-This project aims to predict patient recovery outcomes using metabolomics biomarkers and machine learning techniques.
-
-The workflow includes:
-
-- Data preprocessing
-- PCA analysis
-- Biomarker ranking
-- Volcano plot analysis
-- Recovery clustering
-- Machine learning prediction
-- Feature selection
-- SHAP interpretation
-- Hyperparameter optimization
-- Exhaustive feature search
+ariant="document" id="78452"}
+# MetaboRecovery AI
+## ระบบปัญญาประดิษฐ์เพื่อช่วยประเมินการฟื้นตัวหลังการผ่าตัดจากข้อมูลเมตาโบโลมิกส์ (Metabolomics-Based Clinical Decision Support System)
 
 ---
+
+# ที่มาและความสำคัญของโครงการ
+
+การประเมินการฟื้นตัวของผู้ป่วยหลังการผ่าตัดเป็นหนึ่งในความท้าทายสำคัญทางการแพทย์ เนื่องจากผู้ป่วยแต่ละรายมีการตอบสนองต่อการรักษาแตกต่างกัน แม้ว่าจะได้รับการรักษาในรูปแบบเดียวกันก็ตาม
+
+ปัจจุบันเทคโนโลยี Metabolomics สามารถวิเคราะห์สารเมตาโบไลต์ภายในร่างกาย ซึ่งสะท้อนถึงสภาวะทางชีวภาพและกระบวนการฟื้นตัวของผู้ป่วยได้อย่างละเอียด ทำให้สามารถนำข้อมูลดังกล่าวมาประยุกต์ใช้ร่วมกับปัญญาประดิษฐ์ (Artificial Intelligence) เพื่อคาดการณ์ผลลัพธ์ทางคลินิกได้อย่างมีประสิทธิภาพ
+
+โครงการ MetaboRecovery AI จึงถูกพัฒนาขึ้นเพื่อสร้างระบบ Clinical Decision Support System (CDSS) ที่สามารถช่วยประเมินความเสี่ยงในการฟื้นตัวของผู้ป่วยหลังการผ่าตัด พร้อมอธิบายเหตุผลของการตัดสินใจของโมเดลผ่านการวิเคราะห์ Biomarker ที่สำคัญ
+
+---
+
+# วัตถุประสงค์
+
+1. พัฒนาโมเดล Machine Learning สำหรับคาดการณ์ผลการฟื้นตัวหลังการผ่าตัด
+
+2. วิเคราะห์ Biomarker ที่มีผลต่อการฟื้นตัวของผู้ป่วย
+
+3. สร้างระบบ Clinical AI Report เพื่อช่วยอธิบายผลการทำนายของโมเดล
+
+4. พัฒนาต้นแบบ Clinical Decision Support Platform สำหรับบุคลากรทางการแพทย์
+
+---
+
+# ข้อมูลที่ใช้ในการศึกษา
 
 ## Dataset
 
-Source:
+ข้อมูลผู้ป่วยทั้งหมด
 
-- MetaboLights MTBLS242
+47 ราย
 
-Patients:
+แบ่งเป็น
 
-- 47 patients
+- Poor Recovery จำนวน 24 ราย
+- Fast Recovery จำนวน 23 ราย
 
-Classes:
+ข้อมูลประกอบด้วย
 
-- Fast Recovery
-- Poor Recovery
-
----
-
-## Workflow
-
-### 1. Data Preprocessing
-
-- Clean metabolomics dataset
-- Normalize metabolite values
-- Generate machine learning dataset
-
-### 2. Exploratory Data Analysis
-
-- PCA
-- Correlation Heatmap
-- Recovery Trajectory
-
-### 3. Biomarker Discovery
-
-- Volcano Plot
-- Biomarker Ranking
-- SHAP Analysis
-
-### 4. Machine Learning
-
-Models tested:
-
-- Random Forest
-- Extra Trees
-- XGBoost
-- SVM
-- Ensemble Learning
-- Stacking Classifier
-
-### 5. Feature Selection
-
-Final Selected Biomarkers:
-
-- clinical_score
-- L-allo-Isoleucine_preop
-- creatinine_preop
-- glycine_preop
-- lipoproteins_ratio
+- Clinical Score
+- Glycine
+- Creatinine
+- Amino Acid Metabolites
+- Ketone Body Metabolites
+- Metabolomics Biomarkers อื่น ๆ
 
 ---
 
-## Results
+# วิธีดำเนินงาน
 
-| Model | Accuracy |
-|---------|---------:|
-| Random Forest Baseline | 79.11% |
-| Top 3 Features | 81.11% |
-| Ratio Features | 81.11% |
-| XGBoost | 78.89% |
-| Random Forest + Grid Search | 83.33% |
-| Champion Model v1 (7 Features) | 85.56% |
-| 🏆 Champion Model v2 (5 Features) | 89.33% |
+## 1. Data Preparation
+
+- ทำความสะอาดข้อมูล
+- คัดเลือกตัวแปรสำคัญ
+- เตรียมข้อมูลสำหรับ Machine Learning
+
+## 2. Feature Selection
+
+วิเคราะห์และคัดเลือก Biomarker ที่มีความสัมพันธ์กับผลการฟื้นตัว
+
+Biomarker สุดท้ายที่ถูกเลือก ได้แก่
+
+1. clinical_score
+2. glycine_preop
+3. creatinine_preop
+4. L-allo-Isoleucine_3m
+5. L-glutamine_3m
+6. (R)-3-Hydroxybutyric acid_3m
+7. L-valine_preop
 
 ---
 
-## Final Champion Model
+## 3. Machine Learning Model
 
-### Algorithm
+โมเดลที่ใช้
 
 Random Forest Classifier
 
-### Cross-Validation Results (5-Fold)
+Parameter
 
-Fold Scores:
+- n_estimators = 100
+- max_depth = 3
+- random_state = 42
 
-text [0.80, 1.00, 0.78, 1.00, 0.89] 
+Validation Method
 
-Mean Accuracy:
-
-text 89.33% 
-
-Standard Deviation:
-
-text 9.47% 
-
-### Best Hyperparameters
-
-python RandomForestClassifier(     n_estimators=100,     max_depth=3,     min_samples_leaf=1,     min_samples_split=2,     random_state=42 ) 
-
-### Selected Biomarkers
-
-1. clinical_score
-2. L-allo-Isoleucine_preop
-3. creatinine_preop
-4. glycine_preop
-5. lipoproteins_ratio
+- Stratified 5-Fold Cross Validation
 
 ---
 
-## Model Interpretation
+# ผลการทดลอง
 
-SHAP analysis identified the following biomarkers as the most influential predictors of recovery outcome:
+## Model Performance
 
-- clinical_score
-- L-allo-Isoleucine_preop
-- creatinine_preop
-- glycine_preop
-- lipoproteins_ratio
+Accuracy
 
-The use of engineered ratio features improved prediction performance while reducing the number of required biomarkers.
+91.56%
 
----
+Cross Validation Scores
 
-## Visualizations
+- 90.0%
+- 90.0%
+- 88.9%
+- 100.0%
+- 88.9%
 
-### Confusion Matrix
+Training Accuracy
 
-Confusion Matrix
-
-### SHAP Analysis
-
-SHAP Analysis
+97.87%
 
 ---
 
-## Key Findings
+## Biomarker Importance
 
-- Only five biomarkers were required to achieve the highest predictive performance.
-- Feature engineering significantly improved model accuracy.
-- Lipoprotein-related ratio features were more informative than raw lipoprotein measurements.
-- Exhaustive feature search outperformed conventional feature selection methods.
-- The final model achieved 89.33% cross-validated accuracy.
-- L-allo-Isoleucine_preop consistently appeared as one of the strongest predictive biomarkers.
-- Clinical information combined with metabolomics data substantially improved prediction performance.
+Biomarker ที่มีผลต่อการตัดสินใจของโมเดลมากที่สุด
 
----
-
-## Conclusion
-
-This study demonstrates that metabolomics biomarkers can be used to predict patient recovery outcomes with high accuracy.
-
-After extensive experimentation involving:
-
-- Feature Engineering
-- Biomarker Ranking
-- Boruta Feature Selection
-- RFECV
-- Random Forest Optimization
-- XGBoost
-- Ensemble Learning
-- Stacking Classifiers
-- Hyperparameter Optimization
-- Exhaustive Feature Search
-- SHAP Interpretation
-
-the final Random Forest model achieved 89.33% cross-validated accuracy using only five biomarkers.
-
-These results suggest that metabolomics-based recovery prediction has strong potential for future clinical decision support applications.
+| Biomarker | Importance |
+|------------|------------|
+| clinical_score | 37.4% |
+| glycine_preop | 17.5% |
+| L-glutamine_3m | 11.0% |
+| L-allo-Isoleucine_3m | 10.5% |
+| creatinine_preop | 10.5% |
+| L-valine_preop | 7.9% |
+| (R)-3-Hydroxybutyric acid_3m | 5.2% |
 
 ---
 
-## Project Structure
+# ระบบ Clinical AI Report
 
-Recovery-Prediction-Using-Metabolomics/
+ระบบสามารถสร้างรายงานอัตโนมัติสำหรับผู้ป่วยแต่ละราย ประกอบด้วย
 
-├── data/
+## Patient Information
 
-│   ├── recovery_prediction_dataset.csv
+- Patient ID
+- วันที่วิเคราะห์
+- Prediction Result
+- Confidence Score
 
-│   ├── recovery_prediction_dataset_v2.csv
+## Biomarker Assessment
 
-│   ├── recovery_prediction_dataset_v3.csv
+สำหรับ Biomarker ที่ผิดปกติ ระบบจะแสดง
 
-│   └── model_comparison.csv
+- Patient Value
+- Population Mean
+- Z-Score
+- Clinical Significance
+- Clinical Interpretation
+- Associated Conditions
 
-│
+## AI Condition Statement
 
-├── raw_data/
+สรุปเหตุผลของการทำนายโดยอ้างอิงจาก Biomarker สำคัญ
 
-│   ├── Domain_2_NMR_results_MTBLS242.tsv
+## Clinical Risk Summary
 
-│   └── Domain_2_sample_table_MTBLS242.tsv
+- Recovery Risk
+- Metabolic Risk
+- Overall Status
+- AI Risk Score
 
-│
+## Final Assessment
 
-├── results/
-
-│   ├── confusion_matrix.png
-
-│   ├── confusion_matrix_v2.png
-
-│   ├── champion_shap.png
-
-│   └── champion_shap_v2.png
-
-│
-
-├── scripts/
-
-│   ├── step22_train_model.py
-
-│   ├── step25_feature_search.py
-
-│   ├── step28_grid_search.py
-
-│   ├── step33_champion_model.py
-
-│   ├── step50_super_champion.py
-
-│   ├── step51_confusion_matrix_v2.py
-
-│   └── step52_shap_v2.py
-
-│
-
-├── README.md
-
-├── requirements.txt
-
-└── .gitignore
----
-
-## How to Run
-
-### Install Dependencies
-
-bash pip install -r requirements.txt 
-
-### Run Baseline Model
-
-bash python scripts/step22_train_model.py 
-
-### Run Feature Search
-
-bash python scripts/step25_feature_search.py 
-
-### Run Hyperparameter Optimization
-
-bash python scripts/step28_grid_search.py 
-
-### Run Final Champion Model
-
-bash python scripts/step50_super_champion.py 
-
-### Generate Confusion Matrix
-
-bash python scripts/step51_confusion_matrix_v2.py 
-
-### Generate SHAP Analysis
-
-bash python scripts/step52_shap_v2.py 
+สรุปผลทางคลินิกที่เข้าใจง่ายสำหรับบุคลากรทางการแพทย์
 
 ---
 
-## Author
+# Dashboard Prototype
 
--
+ต้นแบบแพลตฟอร์มประกอบด้วย
 
-School of Information Technology
+## Recovery Analytics Dashboard
 
-King Mongkut's University of Technology Thonburg
+แสดง
+
+- Model Accuracy
+- Patient Count
+- Recovery Distribution
+- Biomarker Importance
+- PCA Recovery Clusters
+
+## Patient Analysis
+
+สำหรับวิเคราะห์ผู้ป่วยรายบุคคล
+
+## Clinical Report
+
+สำหรับแสดงรายงานการวิเคราะห์แบบละเอียด
+
+## SHAP Explorer
+
+สำหรับอธิบายการตัดสินใจของโมเดล
+
+---
+
+# จุดเด่นของโครงการ
+
+- ใช้ข้อมูล Metabolomics จริงในการวิเคราะห์
+- มีความแม่นยำ 91.56%
+- สามารถอธิบายเหตุผลของการทำนายได้
+- แสดงผลในรูปแบบ Clinical Report
+- มี Dashboard สำหรับใช้งานจริง
+- สามารถพัฒนาเป็น Clinical Decision Support Platform ในอนาคต
+
+---
+
+# ผลลัพธ์ที่คาดว่าจะได้รับ
+
+1. ระบบต้นแบบสำหรับประเมินการฟื้นตัวหลังการผ่าตัด
+
+2. เครื่องมือช่วยสสนุนการตัดสินใจทางคลินิก
+
+3. แนวทางการประยุกต์ใช้ Metabolomics ร่วมกับ Artificial Intelligence ในงานทางการแพทย์
+
+4. ต้นแบบแพลตฟอร์ม HealthTech ที่สามารถต่อยอดสู่การใช้งานจริงได้
+
+ข้อจำกัด
+
+โครงการอยู่ในระดับต้นแบบ (Prototype)
+
+ข้อมูลผู้ป่วยมีจำนวน 47 ราย ซึ่งยังจำเป็นต้องมีการเก็บข้อมูลเพิ่มเติมเพื่อเพิ่มความสามารถในการใช้งานในระดับคลินิกจริง
+
+ผลลัพธ์ของระบบมีวัตถุประสงค์เพื่อการวิจัยและการสนับสนุนการตัดสินใจเท่านั้น ไม่สามารถใช้แทนการวินิจฉัยโดยแพทย์ได้

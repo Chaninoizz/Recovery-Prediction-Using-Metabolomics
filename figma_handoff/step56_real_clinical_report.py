@@ -150,17 +150,6 @@ feature_importance = feature_importance.sort_values(
     ascending=False
 )
 
-print("\n=== FEATURE IMPORTANCE CHECK ===")
-
-for row in feature_importance.itertuples():
-    print(
-        row.Feature,
-        round(row.Importance * 100, 2)
-    )
-
-print(
-    feature_importance["Importance"].sum()
-)
 # ==========================
 # Select Patient
 # ==========================
